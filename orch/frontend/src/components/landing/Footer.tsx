@@ -34,9 +34,13 @@ export function Footer() {
                 WebkitTextFillColor: "transparent",
               }}
               animate={{ y: [0, -2, 0] }}
-              transition={{ duration: 3, repeat: Infinity, repeatType: "mirror" }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatType: "mirror",
+              }}
             >
-              Intent API
+              TaaS
             </motion.a>
             <motion.p
               initial={{ opacity: 0 }}
@@ -45,7 +49,7 @@ export function Footer() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-neutral-400 mt-2"
             >
-              &copy; {new Date().getFullYear()} Intent API. All rights reserved.
+              &copy; {new Date().getFullYear()} TaaS. All rights reserved.
             </motion.p>
           </div>
           <div className="flex flex-wrap justify-center md:justify-end space-x-6">
