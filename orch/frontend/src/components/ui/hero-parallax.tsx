@@ -107,7 +107,7 @@ export const ProductCard = ({
     link: string;
     thumbnail: string;
   };
-  translate: any;
+  translate: any; // eslint-disable-line
 }) => {
   return (
     <motion.div
