@@ -1,36 +1,36 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const router = useRouter();
-
-  const handleSubmit = async (e) => {
+  // eslint-disable-next-line
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     try {
-      const res = await fetch('/api/v1/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      const res = await fetch("/api/v1/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({ username, password }),
       });
 
       if (!res.ok) {
         const data = await res.json();
-        setError(data.detail || 'Login failed');
+        setError(data.detail || "Login failed");
         return;
       }
 
       const data = await res.json();
-      localStorage.setItem('token', data.access_token);
-      router.push('/testchat');
+      localStorage.setItem("token", data.access_token);
+      router.push("/testchat");
     } catch (err) {
-      setError('An unexpected error occurred.');
+      setError("An unexpected error occurred.");
     }
   };
 
@@ -60,7 +60,10 @@ export default function LoginPage() {
             />
           </div>
           {error && <p className="text-sm text-red-500">{error}</p>}
-          <button type="submit" className="w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700">
+          <button
+            type="submit"
+            className="w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700"
+          >
             Login
           </button>
         </form>

@@ -1,34 +1,34 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const router = useRouter();
-
-  const handleSubmit = async (e) => {
+  // eslint-disable-next-line
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     try {
-      const res = await fetch('/api/v1/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/v1/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
       if (!res.ok) {
         const data = await res.json();
-        setError(data.detail || 'Registration failed');
+        setError(data.detail || "Registration failed");
         return;
       }
 
-      router.push('/login');
+      router.push("/login");
     } catch (err) {
-      setError('An unexpected error occurred.');
+      setError("An unexpected error occurred.");
     }
   };
 
@@ -58,7 +58,10 @@ export default function RegisterPage() {
             />
           </div>
           {error && <p className="text-sm text-red-500">{error}</p>}
-          <button type="submit" className="w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700">
+          <button
+            type="submit"
+            className="w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700"
+          >
             Register
           </button>
         </form>
